@@ -1,9 +1,12 @@
 package mybatis;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+
 
 /*
 해당 인터페이스는 컨트롤러와 DAO 사이에서 매개역할을 하는 서비스객체로
@@ -43,4 +46,20 @@ public interface ServiceMyBoard {
 	
 	//수정처리하기
 	public int modify(MyBoardDTO myBoardDTO);
+	
+	//삭제처리하기
+	public int delete(String idx, String id);
+	
+	//기존 리스트에 검색기능을 추가했으므로 매개변수를 DTO로 변경한다.
+	//해당 DTO객체에는 검색어와 페이지구간에 대한 값이 저장된다.
+	public int getTotalCountSearch(ParameterDTO parameterDTO);
+	public ArrayList<MyBoardDTO> listPageSearch(ParameterDTO parameterDTO);
+	
+	//Mapper에서 Map 사용하기
+	public ArrayList<MyBoardDTO> hashMapUse(
+			Map<String, String> hMap);
+	
+	//Mapper에서 List 사용하기
+	public ArrayList<MyBoardDTO> arrayListUse(
+			List<String> aList);
 }
